@@ -93,7 +93,8 @@
     <div>
         <form ng-submit="calculateUnits()">
           Amount to Pay: <input type="number" ng-model="amount" placeholder="Enter amount">
-          <select ng-model="currency">
+          <select ng-model="currency" required>
+              <option value="">--Select currency--</option>
             <option value="NGN">NGN</option>
             <option value="USD">USD</option>
           </select>
