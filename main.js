@@ -1,4 +1,4 @@
-
+//gets currency from user selection
 var coinApp = angular.module('coinApp', []);
 
 coinApp.controller('mainController', function mainController($scope, $http) {
@@ -10,7 +10,7 @@ coinApp.controller('mainController', function mainController($scope, $http) {
   $scope.total_usd_units = 0.0;
   $scope.total_currency_units = 0.0;
 
-  $scope.currency_to_convert_to = 'NGN';
+  $scope.currency_to_convert_to = 'EUR';
 
   $scope.getPrice = function() {
     console.log("Trying to get price");   
