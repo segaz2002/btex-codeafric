@@ -64,7 +64,64 @@
                 </tbody>
               </table>
         </div>
+        <div>
+          <form ng-submit="calculateTotal()">
+            Units to Buy: <input type="number" ng-model="units" placeholder="Enter units to buy">
+            <br>
+            <input class="btn-primary" type="submit" value="calculate">
+            <br><br>
+          </form>
+          <br>
+          <table class="table table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Units</th>
+                  <th scope="col">USD</th>
+                  <th scope="col">NGN</th>
+                </tr>
+              </thead>
+              <tbody class="table-striped">
+                <tr>
+                  <td>{{units}}</td>
+                  <td>{{total_amount_usd}}</td>
+                  <td>{{total_amount_ngn}}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        
+    <div>
+        <form ng-submit="calculateUnits()">
+          Amount to Pay: <input type="number" ng-model="amount" placeholder="Enter amount">
+          <select ng-model="currency">
+            <option value="NGN">NGN</option>
+            <option value="USD">USD</option>
+          </select>
+          <br>
+          <input class="btn-primary" type="submit" value="calculate">
+          <br><br>
+        </form>
+        <br>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Amount</th>
+                <th scope="col">USD units</th>
+                <th scope="col">NGN units</th>
+              </tr>
+            </thead>
+            <tbody class="table-striped">
+              <tr>
+                <td>{{amount}}</td>
+                <td>{{total_units_usd}}</td>
+                <td>{{total_units_ngn}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
     </div>
+    
+  </div>
     <script src="main.js"></script>
   </body>
 </html>
