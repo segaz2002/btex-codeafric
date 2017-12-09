@@ -44,7 +44,13 @@
         </div>
       </nav>
         <div>
-            <h5>{{title}}</h5>
+            <h5>{{title}}</h5> 
+            <select ng-change="getPrice()" ng-model="currency_to_convert_to" required>
+              <option value="NGN" selected="selected">NGN</option>
+              <option value="EUR">EUR</option>
+              <option value="CNY">CNY</option>
+              <option value="GBP">GBP</option>
+            </select>
         </div>
         <div>
             <table class="table table-bordered">
@@ -64,7 +70,65 @@
                 </tbody>
               </table>
         </div>
+        <div>
+          <form ng-submit="calculateTotal()">
+            Units to Buy: <input type="number" ng-model="units" placeholder="Enter units to buy">
+            <br>
+            <input class="btn-primary" type="submit" value="calculate">
+            <br><br>
+          </form>
+          <br>
+          <table class="table table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Units</th>
+                  <th scope="col">USD</th>
+                  <th scope="col">{{currency_to_convert_to}}</th>
+                </tr>
+              </thead>
+              <tbody class="table-striped">
+                <tr>
+                  <td>{{units}}</td>
+                  <td>{{total_usd_amount}}</td>
+                  <td>{{total_currency_amount}}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        
+    <div>
+        <form ng-submit="calculateUnits()">
+          Amount to Pay: <input type="number" ng-model="amount" placeholder="Enter amount">
+          <select ng-model="currency" required>
+              <option value="">--Select currency--</option>
+            <option value="{{currency_to_convert_to}}">{{currency_to_convert_to}}</option>
+            <option value="USD">USD</option>
+          </select>
+          <br>
+          <input class="btn-primary" type="submit" value="calculate">
+          <br><br>
+        </form>
+        <br>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Amount</th>
+                <th scope="col">USD units</th>
+                <th scope="col">{{currency_to_convert_to}} units</th>
+              </tr>
+            </thead>
+            <tbody class="table-striped">
+              <tr>
+                <td>{{amount}}</td>
+                <td>{{total_usd_units}}</td>
+                <td>{{total_currency_units}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
     </div>
+    
+  </div>
     <script src="main.js"></script>
   </body>
 </html>
