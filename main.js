@@ -4,21 +4,24 @@ var coinApp = angular.module('coinApp', []);
 coinApp.controller('mainController', function mainController($scope, $http) {
   $scope.title = "My Bitcoin Exchange";
   $scope.rates = [];
-  title = "My title";
+  
   $scope.total_amount_usd = 0.0;
   $scope.total_amount_ngn = 0.0;
   $scope.total_units_usd = 0.0;
   $scope.total_units_ngn = 0.0;
 
-  $scope.getPrice = function(){
+  $scope.currency_to_convert_to = 'NGN';
+
+  $scope.getPrice = function() {
     console.log("Trying to get price");   
     $http({
       method: 'GET',
-      url: 'https://api.coindesk.com/v1/bpi/currentprice/NGN.json'
+      url: 'https://api.coindesk.com/v1/bpi/currentprice/' + $scope.currency_to_convert_to + '.json'
     }).then(function successCallback(response) {
+      $scope.rates = [];
         var bpi = response.data.bpi
         $scope.rates.push(bpi['USD']);
-        $scope.rates.push(bpi['NGN']);
+        $scope.rates.push(bpi[$scope.currency_to_convert_to]);
       }, function errorCallback(response) {
         console.error(response);
       });

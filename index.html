@@ -44,7 +44,13 @@
         </div>
       </nav>
         <div>
-            <h5>{{title}}</h5>
+            <h5>{{title}}</h5> 
+            <select ng-change="getPrice()" ng-model="currency_to_convert_to" required>
+              <option value="NGN" selected="selected">NGN</option>
+              <option value="EUR">EUR</option>
+              <option value="CNY">CNY</option>
+              <option value="GBP">GBP</option>
+            </select>
         </div>
         <div>
             <table class="table table-bordered">
@@ -77,7 +83,7 @@
                 <tr>
                   <th scope="col">Units</th>
                   <th scope="col">USD</th>
-                  <th scope="col">NGN</th>
+                  <th scope="col">{{currency_to_convert_to}}</th>
                 </tr>
               </thead>
               <tbody class="table-striped">
@@ -95,7 +101,7 @@
           Amount to Pay: <input type="number" ng-model="amount" placeholder="Enter amount">
           <select ng-model="currency" required>
               <option value="">--Select currency--</option>
-            <option value="NGN">NGN</option>
+            <option value="{{currency_to_convert_to}}">{{currency_to_convert_to}}</option>
             <option value="USD">USD</option>
           </select>
           <br>
@@ -108,7 +114,7 @@
               <tr>
                 <th scope="col">Amount</th>
                 <th scope="col">USD units</th>
-                <th scope="col">NGN units</th>
+                <th scope="col">{{currency_to_convert_to}} units</th>
               </tr>
             </thead>
             <tbody class="table-striped">
