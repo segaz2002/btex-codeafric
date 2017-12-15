@@ -4,6 +4,7 @@ var coinApp = angular.module('coinApp', []);
 coinApp.controller('mainController', function mainController($scope, $http) {
   $scope.title = "My Bitcoin Exchange";
   $scope.rates = [];
+<<<<<<< HEAD
   $scope.currency = [
     'USD',
     'EUR',
@@ -12,13 +13,22 @@ coinApp.controller('mainController', function mainController($scope, $http) {
     'GBP',
 
   ];
+=======
+  
+>>>>>>> e4cba362ef29c700a7c8fecf50da319e244d529c
   $scope.total_usd_amount = 0.0;
   $scope.total_currency_amount = 0.0;
   $scope.total_usd_units = 0.0;
   $scope.total_currency_units = 0.0;
+<<<<<<< HEAD
 
   $scope.currency_to_convert_to = 'EUR';
 
+=======
+
+  $scope.currency_to_convert_to = 'EUR';
+
+>>>>>>> e4cba362ef29c700a7c8fecf50da319e244d529c
   $scope.getPrice = function() {
     console.log("Trying to get price");   
     $http({
