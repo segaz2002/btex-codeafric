@@ -44,7 +44,13 @@
         </div>
       </nav>
         <div>
-            <h5>{{title}}</h5>
+            <h5>{{title}}</h5> 
+            <select ng-change="getPrice()" ng-model="currency_to_convert_to" required>
+              <option value="NGN" selected="selected">NGN</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+            </select>
+            <input type="text" placeholder="Search Currency"  ng-model="currency">
         </div>
         <div>
             <table class="table table-bordered">
@@ -77,14 +83,14 @@
                 <tr>
                   <th scope="col">Units</th>
                   <th scope="col">USD</th>
-                  <th scope="col">NGN</th>
+                  <th scope="col">{{currency_to_convert_to}}</th>
                 </tr>
               </thead>
               <tbody class="table-striped">
                 <tr>
                   <td>{{units}}</td>
-                  <td>{{total_amount_usd}}</td>
-                  <td>{{total_amount_ngn}}</td>
+                  <td>{{total_usd_amount}}</td>
+                  <td>{{total_currency_amount}}</td>
                 </tr>
               </tbody>
             </table>
@@ -94,8 +100,8 @@
         <form ng-submit="calculateUnits()">
           Amount to Pay: <input type="number" ng-model="amount" placeholder="Enter amount">
           <select ng-model="currency" required>
-              <option value="">Select Currency</option>
-            <option value="NGN">NGN</option>
+              <option value="">--Select currency--</option>
+            <option value="{{currency_to_convert_to}}">{{currency_to_convert_to}}</option>
             <option value="USD">USD</option>
           </select>
           <br>
@@ -108,14 +114,14 @@
               <tr>
                 <th scope="col">Amount</th>
                 <th scope="col">USD units</th>
-                <th scope="col">NGN units</th>
+                <th scope="col">{{currency_to_convert_to}} units</th>
               </tr>
             </thead>
             <tbody class="table-striped">
               <tr>
                 <td>{{amount}}</td>
-                <td>{{total_units_usd}}</td>
-                <td>{{total_units_ngn}}</td>
+                <td>{{total_usd_units}}</td>
+                <td>{{total_currency_units}}</td>
               </tr>
             </tbody>
           </table>
