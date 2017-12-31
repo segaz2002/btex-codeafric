@@ -1,0 +1,13 @@
+
+ body {
+    padding:29px;
+    align-content: middle;
+    vertical-align: middle;
+}
+
+.theDropdown {
+    width: 180px;
+}
+.currency{
+    padding-bottom:15px;
+}
