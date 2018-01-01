@@ -59,21 +59,17 @@
                   
                           
                           
-                          <section class="m-b-l m-t-lg clearfix currency">
+                          <section ng-controller="mainController" class="m-b-l m-t-lg clearfix currency">
                               <currency-select 
                                       search-placeholder="Search Currency..."
-                                      none-selected-text="Nothing selected"
-                                      ng-model="selectedCurrency7"
+                                      none-selected-text="Select Currency"
+                                      ng-model="currency_to_convert_to.code"
                                       currencies="currenciesWithNames"
                                       ng-change="getPrice">
                               </currency-select>
                               
                             </section>
-                            <select ng-change="getPrice()" ng-model="currency_to_convert_to" required>
-                                <option value="NGN" selected="selected">NGN</option>
-                                <option value="EUR">EUR</option>
-                                <option value="GBP">GBP</option>
-                              </select>
+                           
                          
                               
                      
@@ -107,7 +103,7 @@
                           <tr>
                             <th scope="col">Units</th>
                             <th scope="col">USD</th>
-                            <th scope="col">{{currency_to_convert_to}}</th>
+                            <th scope="col">{{currency_to_convert_to.name}}</th>
                           </tr>
                         </thead>
                         <tbody class="table-striped">
@@ -125,10 +121,10 @@
                     Amount to Pay: <input type="number" ng-model="amount" placeholder="Enter amount">
                     <select ng-model="currency" required>
                         <option value="">--Select currency--</option>
-                      <option value="{{currency_to_convert_to}}">{{currency_to_convert_to}}</option>
+                      <option value="{{currency_to_convert_to}}">{{currency_to_convert_to.code}}</option>
                       <option value="USD">USD</option>
                     </select>  
-                    <section  class="m-b-l m-t-lg clearfix currency">
+                    <section ng-controller="mainController" class="m-b-l m-t-lg clearfix currency">
                         <currency-select
                                 search-placeholder="Search Currency..."
                                 none-selected-text="Nothing selected"
@@ -145,7 +141,7 @@
                         <tr>
                           <th scope="col">Amount</th>
                           <th scope="col">USD units</th>
-                          <th scope="col">{{currency_to_convert_to}} units</th>
+                          <th scope="col">{{currency_to_convert_to.name}} units</th>
                         </tr>
                       </thead>
                       <tbody class="table-striped">
