@@ -51,11 +51,7 @@ coinApp.controller('mainController', function($scope, $http) {
   
     $scope.calculateUnits = function() {
       angular.forEach($scope.rates, function(bt_rate) {
-<<<<<<< HEAD
         if (bt_rate.code == $scope.currency_to_convert_to.code) {
-=======
-        if (bt_rate.code == $scope.currency.code) {
->>>>>>> ccf730b8394c19aed075b0ed9e7f4841f68a17a8
           var units = parseInt($scope.amount) / bt_rate.rate_float;
           if (bt_rate.code == "USD") {
             $scope.total_usd_units = units;

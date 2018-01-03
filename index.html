@@ -63,11 +63,7 @@
                               <currency-select 
                                       search-placeholder="Search Currency..."
                                       none-selected-text="Select Currency"
-<<<<<<< HEAD
                                       ng-model="currency_to_convert_to"
-=======
-                                      ng-model="currency_to_convert_to.code"
->>>>>>> ccf730b8394c19aed075b0ed9e7f4841f68a17a8
                                       currencies="currenciesWithNames"
                                       ng-change="getPrice()">
                               </currency-select>
@@ -122,16 +118,7 @@
               <div>
                   <form ng-submit="calculateUnits()">
                     Amount to Pay: <input type="number" ng-model="amount" placeholder="Enter amount">
-<<<<<<< HEAD
                       <section  class="m-b-l m-t-lg clearfix currency">
-=======
-                    <select ng-model="currency" required>
-                        <option value="">--Select currency--</option>
-                      <option value="{{currency_to_convert_to}}">{{currency_to_convert_to.code}}</option>
-                      <option value="USD">USD</option>
-                    </select>  
-                    <section ng-controller="mainController" class="m-b-l m-t-lg clearfix currency">
->>>>>>> ccf730b8394c19aed075b0ed9e7f4841f68a17a8
                         <currency-select
                                 search-placeholder="Search Currency..."
                                 none-selected-text="Nothing selected"
