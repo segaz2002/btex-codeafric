@@ -15,13 +15,11 @@ coinApp.controller('mainController', function($scope, $http) {
 
     $scope.currenciesWithNames = [
       {code: 'EUR',  name: 'Euro'},
-      {code: 'USD',  name: 'US Dollar'},
       {code: 'GBP', name: 'British Pound'},
       {code: 'NGN',  name: 'Nigerian Naira'},
       {code: 'CNY',  name: 'Chinese Yuan'},
       {code: 'CAD',  name: 'Canadian Dollars'}
   ];
-
   
     $scope.getPrice = function() {
       console.log("Trying to get price");   
@@ -30,29 +28,49 @@ coinApp.controller('mainController', function($scope, $http) {
         url: 'https://api.coindesk.com/v1/bpi/currentprice/' + $scope.currency_to_convert_to.code + '.json'
       }).then(function successCallback(response) {
         $scope.rates = [];
-          var bpi = response.data.bpi
+          var bpi = response.data.bpi;
           $scope.rates.push(bpi['USD']);
           $scope.rates.push(bpi[$scope.currency_to_convert_to.code]);
         }, function errorCallback(response) {
           console.error(response);
         });
     }
-  
-    $scope.calculateTotal = function() {
+      $scope.calculateTotal = function() {
       angular.forEach($scope.rates, function(bt_rate) {
-        var total = bt_rate.rate_float * parseInt($scope.units);
+     var total = bt_rate.rate_float * $scope.units_float;
+  
+        $scope.$watch('units',function(oldValue,newValue){
         if (bt_rate.code == "USD") {
+          $scope.total_usd_amount ="0"
+         total = bt_rate.rate_float * oldValue;
           $scope.total_usd_amount = total;
+        console.log( `USD AMOUNT ${$scope.total_usd_amount}`);
+         console.log(` Total ${$scope.total}`) ;
+         console.log(` NewValue ${newValue}`) 
+         
         } else {
-          $scope.total_currency_amount = total;
+          
+          $scope.$watch('units',function(oldValue,newValue) {
+            total = bt_rate.rate_float * oldValue;
+            $scope.total_currency_amount = total;
+
+            console.log( `Amount  ${$scope.total_currency_amount}`);
+          }); 
         }
       });
-    }
+    });
+    };
+    
+  
+  
+
+
   
     $scope.calculateUnits = function() {
       angular.forEach($scope.rates, function(bt_rate) {
         if (bt_rate.code == $scope.currency_to_convert_to.code) {
           var units = parseInt($scope.amount) / bt_rate.rate_float;
+
           if (bt_rate.code == "USD") {
             $scope.total_usd_units = units;
             $scope.total_currency_units = 0;
@@ -62,29 +80,5 @@ coinApp.controller('mainController', function($scope, $http) {
           }
         }
       });
-    }
- 
-
-    
-    $scope.codeMapper = function(code) {
-        return {code: code};
     };
-
-    $scope.codeExtractor = function(currency) {
-        return currency.code;
-    };
-
-    $scope.changedHandler = function() {
-        $scope.currencyChangeCount += 1;
-    };
-
-    $scope.changedCodeHandler = function() {
-        $scope.currencyCodeChangeCount += 1;
-    };
-
-    $scope.otherClicked = function() {
-        window.alert("Other clicked");
-    };
-});
-
-
+  });
