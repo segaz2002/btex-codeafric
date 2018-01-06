@@ -13,13 +13,14 @@
       <link href="index.css" rel="stylesheet">
 
       <script src="tw-currency-select.js"></script>
+      
 
       
               
-        <body>
-          <div ng-controller="mainController">
+        <body ng-controller="mainController">
+          
               <div ng-init="getPrice()" class="container">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="nav-pills"r>
                   <a class="navbar-brand" href="#">BitCoinValue</a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -72,7 +73,7 @@
                            
                          
                               
-                                          <table class="table table-bordered">
+                       <table class="table table-bordered">
                           <thead class="thead-dark">
                             <tr>
                               <th scope="col">Code</th>
@@ -90,13 +91,10 @@
                         </table>
                   </div>
                   <div>
-                    <form ng-submit="calculateTotal()">
-                      Units to Buy: <input type="number" ng-model="units" placeholder="Enter units to buy">
-                      <br>
-                      <input class="btn-primary" type="submit" value="calculate">
-                      <br><br>
-                    </form>
-                    <br>
+                    <form >
+                     <span id="units">Units to Buy:</span>  <input type="number" step="0.1" ng-model="units" placeholder="Enter units to buy" required ng-change="calculateTotal()" >
+                                      </form>
+                 
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                           <tr>
@@ -114,43 +112,52 @@
                         </tbody>
                       </table>
                   </div>
-                  
-              <div>
-                  <form ng-submit="calculateUnits()">
-                    Amount to Pay: <input type="number" ng-model="amount" placeholder="Enter amount">
-                      <section  class="m-b-l m-t-lg clearfix currency">
-                        <currency-select
-                                search-placeholder="Search Currency..."
-                                none-selected-text="Nothing selected"
-                                ng-model="currency_to_convert_to"
-                                currencies="currenciesWithNames"
-                                ng-change="getPrice()">
-                        </currency-select>
-                    <br>
-                    <input class="btn-primary" type="submit" value="calculate">
-                    <br><br>
-                  </form>
-                  <br>
-                  <table class="table table-bordered">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th scope="col">Amount</th>
-                          <th scope="col">USD units</th>
-                          <th scope="col">{{currency_to_convert_to.name}} units</th>
-                        </tr>
-                      </thead>
-                      <tbody class="table-striped">
-                        <tr>
-                          <td>{{amount}}</td>
-                          <td>{{total_usd_units}}</td>
-                          <td>{{total_currency_units}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
+             <section ng-submit="calculateUnits()" class="m-b-lg m-t-lg clearfix">
+                <h3>Amount to pay</h3>
+            
+                <div  class="col-lg-6">
+                    <div class="input-group">
+                        <input type="number" step="any" required
+                               name="amount"
+                               class="form-control"
+                               ng-model="amount"
+                               placeholder="Amount to Pay"
+                               autocomplete="off"
+                               ng-change="calculateUnits()"/>
+                               
+            
+                        <div  class="input-group-btn">
+                            <currency-select
+                                    ng-model="currency_to_convert_to"
+                                    currencies="currenciesWithNames"
+                                    ng-change="getPrice()">
+                          </currency-select>
+                </div> 
                 </div>
-              </div>
-              
-            </div>
-              <script src="main.js"></script>
-          </div>
-        </body>
+                </div>
+                            <table class="table table-bordered">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">Amount</th>
+                                  <th scope="col">USD units</th>
+                                  <th scope="col">{{currency_to_convert_to.name}} units</th>
+                                </tr>
+                              </thead>
+                              <tbody class="table-striped">
+                                <tr>
+                                  <td>{{amount}}</td>
+                                  <td>{{total_usd_units}}</td>
+                                  <td>{{total_currency_units}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+              </section>
+              <script src="main.js"></script>           
+              </body>
+
+
+    
