@@ -27,37 +27,33 @@ coinApp.controller('mainController', function($scope, $http) {
         method: 'GET',
         url: 'https://api.coindesk.com/v1/bpi/currentprice/' + $scope.currency_to_convert_to.code + '.json'
       }).then(function successCallback(response) {
-       
         $scope.rates = [];
           var bpi = response.data.bpi;
           var disclaimer = response.data.disclaimer;
           $scope.disclaimer=disclaimer;
-          console.log(disclaimer)
-          console.log(bpi)
           $scope.rates.push(bpi['USD']);
           $scope.rates.push(bpi[$scope.currency_to_convert_to.code]);
+
+          $scope.calculateTotal();
+          $scope.calculateUnits();
         }, function errorCallback(response) {
           console.error(response);
         });
     }
       $scope.calculateTotal = function() {
+        console.log($scope.rates);
+        
       angular.forEach($scope.rates, function(bt_rate) {
-     var total = bt_rate.rate_float * $scope.units_float;
-  
-        $scope.$watch('units',function(oldValue,newValue){
+       var total = bt_rate.rate_float * $scope.units;
+        
         if (bt_rate.code == "USD") {
-          $scope.total_usd_amount ="0";
-         total = bt_rate.rate_float * oldValue;
+          $scope.total_currency_amount = 0.00;
           $scope.total_usd_amount = total;      
         } else {
-          
-          $scope.$watch('units',function(oldValue,newValue,) {
-            total = bt_rate.rate_float * oldValue;
             $scope.total_currency_amount = total;
-           }); 
+            $scope.total_usd_amount = 0.00; 
         }
       });
-    });
     };
    
     $scope.calculateUnits = function() {
@@ -66,10 +62,10 @@ coinApp.controller('mainController', function($scope, $http) {
           var units = parseInt($scope.amount) / bt_rate.rate_float;
           if (bt_rate.code == "USD") {
             $scope.total_usd_units = units;
-            $scope.total_currency_units = 0;
+            $scope.total_currency_units = 0.00;
           } else {
            $scope.total_currency_units = units;
-            $scope.total_usd_units = 0
+            $scope.total_usd_units = 0.00
           }
         }
       });
