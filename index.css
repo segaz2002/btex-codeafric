@@ -1,0 +1,31 @@
+
+ body {
+    padding:29px;
+    align-content: middle;
+    vertical-align: middle;
+}
+
+.theDropdown {
+    width: 180px;
+}
+.currency{
+    padding-bottom:15px;
+}
+#units{
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    padding-right: 105px;
+   
+}
+.pay{
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    padding-right:105px; 
+    padding-bottom:15px; 
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
