@@ -110,3 +110,15 @@ coinApp.controller('LoginController', function ($scope, $http) {
     });
   };
 });
+
+
+coinApp.controller('RegisterController', function ($scope, $http) {
+
+  $scope.currenciesWithNames = [
+    { code: 'EUR', name: 'Euro' },
+    { code: 'GBP', name: 'British Pound' },
+    { code: 'NGN', name: 'Nigerian Naira' },
+    { code: 'CNY', name: 'Chinese Yuan' },
+    { code: 'CAD', name: 'Canadian Dollars' }
+  ];
+});
