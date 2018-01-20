@@ -46,8 +46,8 @@ a:hover { text-decoration: none }
 	margin-bottom:10px;
 }
 .loginForm input[type=submit]{
-	background:#fb044a;
-	color:#fff;
+	background:green;
+	color: white;
 	font-weight:700;
 	
 }

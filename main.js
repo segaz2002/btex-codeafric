@@ -71,3 +71,26 @@ coinApp.controller('mainController', function($scope, $http) {
       });
     };
   });
+
+coinApp.controller('LoginController', function ($scope, $http) {
+  $scope.handleFormSubmit = function () {
+    console.log("submitted: ", $scope.email, $scope.passwd);
+    $http({
+      method: 'POST',
+      url: 'https://reqres.in/api/login',
+      data: {
+        "email": $scope.email,
+        "password": $scope.passwd
+      }
+    }).then(function successCallback(response) {
+      if (!!response.data.token) {
+        alert("Login successful");
+        window.location.href = "index.html";
+      } else {
+        alert("Login failed unknown error");
+      }
+    }, function errorCallback(response) {
+      alert("Login failed: "+response.data.error);
+    });
+  };
+});
