@@ -20,8 +20,16 @@ coinApp.controller('mainController', function($scope, $http) {
       {code: 'CNY',  name: 'Chinese Yuan'},
       {code: 'CAD',  name: 'Canadian Dollars'}
   ];
+
+  checkSession = function () {
+    var loginToken = window.sessionStorage.getItem("login_token");
+    if (!loginToken) {
+      window.location.href = "login.html";
+    }
+  }
   
     $scope.getPrice = function() {
+      checkSession();
       console.log("Trying to get price");   
       $http({
         method: 'GET',
@@ -73,6 +81,13 @@ coinApp.controller('mainController', function($scope, $http) {
   });
 
 coinApp.controller('LoginController', function ($scope, $http) {
+  $scope.init = function () {
+    var loginToken = window.sessionStorage.getItem("login_token");
+    if (!!loginToken) {
+      window.location.href = "index.html";
+    }
+  }
+
   $scope.handleFormSubmit = function () {
     console.log("submitted: ", $scope.email, $scope.passwd);
     $http({
@@ -84,6 +99,7 @@ coinApp.controller('LoginController', function ($scope, $http) {
       }
     }).then(function successCallback(response) {
       if (!!response.data.token) {
+        window.sessionStorage.setItem("login_token", response.data.token);
         alert("Login successful");
         window.location.href = "index.html";
       } else {
