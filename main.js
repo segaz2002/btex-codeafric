@@ -28,6 +28,12 @@ coinApp.controller('mainController', function($scope, $http) {
     }
   }
   
+  $scope.logout = function () {
+    window.sessionStorage.removeItem("login_token");
+    alert("Logout successful");
+    window.location.href = "login.html";
+  };
+
     $scope.getPrice = function() {
       checkSession();
       console.log("Trying to get price");   
