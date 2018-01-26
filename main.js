@@ -121,4 +121,30 @@ coinApp.controller('RegisterController', function ($scope, $http) {
     { code: 'CNY', name: 'Chinese Yuan' },
     { code: 'CAD', name: 'Canadian Dollars' }
   ];
+
+  $scope.handleRegisterFormSubmit = function () {
+    console.log("Registration info: ", $scope.first_name, $scope.last_name, $scope.email, $scope.passwd, $scope.currency, $scope.confirm);
+
+    $http({
+      method: "POST",
+      url: "https://reqres.in/api/register",
+      data: {
+        "email": $scope.email,
+        "password": $scope.passwd,
+        "first_name": $scope.first_name,
+        "last_name": $scope.last_name,
+        "confirm": $scope.confirm,
+        "currency": $scope.currency
+      }
+    }).then(function successCallback(response) {
+      if (!!response.data.token) {
+        alert("Registration successful");
+        window.location.href = "login.html";
+      } else {
+        alert("Registration response unknown");
+      }
+      }, function errorCallback(response) {
+        alert("Registration failed: " + response.data.error);
+    });
+  };
 });

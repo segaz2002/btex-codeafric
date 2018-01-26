@@ -30,7 +30,7 @@
         <div class="row main">
             <div class="main-login main-center">
                 <h5>Sign up to BitCoinValue Calculator.</h5>
-                <form class="" method="post" action="#">
+                <form class="" ng-submit="handleRegisterFormSubmit()">
 
                     <div class="form-group">
                         <label for="name" class="cols-sm-2 control-label">First Name</label>
@@ -39,7 +39,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-user fa" aria-hidden="true"></i>
                                 </span>
-                                <input type="text" class="form-control" name="first_name" id="name" placeholder="Enter your first Name" />
+                                <input type="text" class="form-control" name="first_name" id="name" placeholder="Enter your first Name" ng-model="first_name" />
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-user fa" aria-hidden="true"></i>
                                 </span>
-                                <input type="text" class="form-control" name="last_name" id="name" placeholder="Enter your last Name" />
+                                <input type="text" class="form-control" name="last_name" id="name" placeholder="Enter your last Name" ng-model="last_name" />
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-envelope fa" aria-hidden="true"></i>
                                 </span>
-                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" ng-model="email" />
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
                                 </span>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" />
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" ng-model="passwd" />
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
                                 </span>
-                                <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" />
+                                <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" ng-model="confirm" />
                             </div>
                         </div>
                     </div>
@@ -111,6 +111,9 @@
                     </div>
 
                 </form>
+                <div style="text-align: center; color:blanchedalmond;">
+                    <a href="login.html">Login</a>
+                </div>
             </div>
         </div>
     </div>
